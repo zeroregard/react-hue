@@ -1,7 +1,7 @@
 import { createTheme, Grid, ThemeProvider } from '@mui/material';
 import { useObservableState } from 'observable-hooks';
 import React from 'react';
-import { shareReplay, startWith, switchMap, withLatestFrom } from 'rxjs';
+import { shareReplay, startWith, switchMap } from 'rxjs';
 import './App.css';
 import Light from './components/Light';
 import { getLights, refresh$ } from './helpers/hueApi';
