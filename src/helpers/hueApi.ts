@@ -24,7 +24,19 @@ export function getLight(id: string): Observable<any> {
 
 export function toggleLight(id: string, on: boolean) {
     const url = `${endpoint}/api/${userToken}/lights/${id}/state`;
-    from(axios.put(url, { on })).subscribe(response => {
+    from(axios.put(url, { on })).subscribe(() => {
         refresh$.next(undefined);
     })
+}
+
+export function setBrightness(id: string, bri: number) {
+    const url = `${endpoint}/api/${userToken}/lights/${id}/state`;
+    from(axios.put(url, { bri: Math.round(bri) })).subscribe(() => {
+        refresh$.next(undefined);
+    })
+}
+
+export function setHue(id: string, hue: number) {
+    const url = `${endpoint}/api/${userToken}/lights/${id}/state`;
+    from(axios.put(url, { hue: Math.round(hue) }));
 }
