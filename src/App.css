@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+
+.hue-picker {
+  height: 6px !important;
+  margin-left: 14px !important;
+}
+
+.hue-horizontal {
+  border-radius: 12px !important;
+}
+
+.hue-horizontal > div {
+  top: -5px;
+}
+
+.hue-horizontal > div > div {
+  width: 20px !important;
+  height: 20px !important;
+}
