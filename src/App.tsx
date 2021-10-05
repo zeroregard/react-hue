@@ -1,9 +1,10 @@
+import React from 'react';
 import { createTheme, Grid, ThemeProvider } from '@mui/material';
 import { useObservableState } from 'observable-hooks';
-import React from 'react';
 import { shareReplay, startWith, switchMap } from 'rxjs';
 import './App.css';
-import Light from './components/Light';
+import CTLight from './components/CTLight';
+import RGBLight from './components/RGBLight';
 import { getLights, refresh$ } from './helpers/hueApi';
 
 const lights$ = refresh$.pipe(
@@ -11,6 +12,14 @@ const lights$ = refresh$.pipe(
     switchMap(() => getLights()),
     shareReplay(1)
 );
+
+function getLightType(id: string, light: any) {
+    if(light.capabilities.control.colorgamut) {
+        return <RGBLight key={id} light={light} id={id}/>;
+    } else {
+        return <CTLight key={id} light={light} id={id}/>;
+    }
+}
 
 function App() {
     const darkTheme = createTheme({
@@ -23,9 +32,7 @@ function App() {
     return (
         <ThemeProvider theme={darkTheme}>
             <Grid container spacing={2} style={{margin: 4}}>
-                {[...lights].map(keyValue =>
-                <Light key={keyValue[0]} light={keyValue[1]} id={keyValue[0]}></Light>
-                )}
+                {[...lights].map(keyValue => getLightType(keyValue[0], keyValue[1]))}
             </Grid>
         </ThemeProvider>
     );
