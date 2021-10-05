@@ -5,6 +5,7 @@ import { Switch } from '@mui/material';
 import { toggleLight } from '../helpers/hueApi';
 import BrightnessController from './controls/BrightnessController';
 import HueController from './controls/HueController';
+import TemperatureController from './controls/TemperatureController';
 
 
 
@@ -18,6 +19,7 @@ export function Light(props: any) {
                 </div>
                 <HueController id={props.id} light={props.light}/>
                 <BrightnessController id={props.id} light={props.light}/>
+                <TemperatureController id={props.id} light={props.light}/>
             </CardContent>
         </Card>
     );

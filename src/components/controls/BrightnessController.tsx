@@ -2,13 +2,17 @@ import { Slider, Stack } from '@mui/material';
 import { setBrightness } from '../../helpers/hueApi';
 import { FaLightbulb } from 'react-icons/fa';
 
+
 export function BrightnessController(props: any) {
     return (
         <div>
             {props.light?.state.bri !== undefined &&
-                <Stack style={{ marginTop: 8 }} spacing={2} direction="row" alignItems="center">
+                <Stack spacing={2} direction="row" alignItems="center">
                     <FaLightbulb />
                     <Slider
+                        sx={{
+                            color: 'white'
+                        }}
                         min={0}
                         max={254}
                         step={1}

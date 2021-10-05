@@ -5,10 +5,13 @@ import { setHue } from "../../helpers/hueApi";
 export function HueController(props: any) {
     return (
         <div>
-            {props.light?.state.hue !== undefined && <HuePicker
-                color={lightStateToHue(props.light.state)}
-                onChangeComplete={(color, _e) => setHue(props.id, toAPIHue(color.hsl.h))}
-            />}
+            {props.light?.state.hue !== undefined &&
+                <div style={{ marginBottom: 16}}>
+                    <HuePicker
+                        color={lightStateToHue(props.light.state)}
+                        onChangeComplete={(color, _e) => setHue(props.id, toAPIHue(color.hsl.h))}
+                    />
+                </div>}
         </div>
     );
 }
